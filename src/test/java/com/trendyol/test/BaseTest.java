@@ -1,5 +1,6 @@
 package com.trendyol.test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -15,11 +16,11 @@ public class BaseTest {
     public void onStartUp(){
         String browserName = getParameter("browser");
         if(browserName.equals("chrome")){
-            System.setProperty("webdriver.chrome.driver","/Users/omerbselvi/Documents/TrendyolCase/chromedriver");
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         }
         else if(browserName.equals("firefox")){
-            System.setProperty("webdriver.gecko.driver", "/Users/omerbselvi/Documents/TrendyolCase/geckodriver");
+            WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
         }
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
